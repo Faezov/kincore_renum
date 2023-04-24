@@ -10,21 +10,22 @@ import pandas as pd
 import numpy as np
 from concurrent.futures import ProcessPoolExecutor, as_completed
 from tqdm import tqdm
-from src.download_data import url_formation_for_pool, download_with_pool
+pd.set_option('display.max_rows', 1000)
 
+from src.download_data import url_formation_for_pool, download_with_pool
+from src.renum.mmCIF.new_mmCIFv2 import *
 exception_AccessionIDs = ["P42212", "Q17104", "Q27903", "Q93125", "P03069", 
                           "D3DLN9", "Q96UT3", "P0ABE7", "P00192", "P76805", 
                           "Q8XCE3", "P00720", "Q38170", "Q94N07", "P0AEX9", 
                           "P02928", "Q2M6S0"]
 
-
 default_input_path_to_mmCIF="./mmCIF"
 default_input_path_to_SIFTS="./SIFTS"
-default_output_path_to_mmCIF="./mmCIF_renum"
-
+default_output_path_to_mmCIF="./mmCIF_renum"                          
 if not os.path.exists(default_output_path_to_mmCIF):
     os.makedirs(default_output_path_to_mmCIF)
-    
+
+
 default_num=50000
 gzip_mode="on"
 
@@ -75,7 +76,7 @@ def renum_mmCIF(mmCIF):
                                                   default_num, chains_to_change, chains_to_change_1toN)
     
     poly_nonpoly_concat = poly_nonpoly_renum(mmcif_dict, df_PDBe_PDB_UniProt, chains_to_change, default_num)
-    poly_nonpoly_atom_site = pd.concat([poly_nonpoly_concat, df_final_atom_site], ignore_index=True).drop_duplicates(subset="PDB_num_and_chain", keep='first')
+    poly_nonpoly_atom_site = pd.concat([poly_nonpoly_concat, df_final_atom_site], ignore_index=True).drop_duplicates(subset="PDB_num_and_chain", keep='first', sort=True)
 
     formed_columns = column_formation(mmcif_dict)
     mmcif_dict = renumber_tables(formed_columns, mmcif_dict, poly_nonpoly_atom_site, chains_to_change, default_num)

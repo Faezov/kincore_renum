@@ -550,7 +550,7 @@ def poly_nonpoly_renum(mmcif_dict, df_PDBe_PDB_UniProt, chains_to_change, defaul
             except KeyError:
                 pass
             
-        poly_nonpoly_concat = pd.concat([df_pdbx_poly_seq_scheme_pdb_final, df_mmCIF_pdbx_nonpoly_scheme], ignore_index=True)
+        poly_nonpoly_concat = pd.concat([df_pdbx_poly_seq_scheme_pdb_final, df_mmCIF_pdbx_nonpoly_scheme], ignore_index=True, sort=True)
         poly_nonpoly_concat = poly_nonpoly_concat[["PDBe", "PDB", "UniProt", "PDBe_num_and_chain", "PDB_num_and_chain", "AccessionID", "Uni_or_50k"]]
     else:
         poly_nonpoly_concat = df_pdbx_poly_seq_scheme_pdb_final[["PDBe", "PDB", "UniProt", "PDBe_num_and_chain", "PDB_num_and_chain", "AccessionID", "Uni_or_50k"]]
