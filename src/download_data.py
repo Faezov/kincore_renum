@@ -84,11 +84,14 @@ def download_with_pool(urls_to_target_files=(),
             futures.append(future)
             
         # add progress bar
-        for future in tqdm(concurrent.futures.as_completed(futures), 
-                           total=len(futures), 
-                           desc='Download '+format_of_db+" file"):
-            try:
-                result = future.result()
-            except Exception as e:
-                print(f"Error downloading file: {str(e)}")
-                continue
+        #for future in tqdm(concurrent.futures.as_completed(futures), 
+        #                   total=len(futures), 
+        #                   desc='Download '+format_of_db+" file"):
+        #    try:
+        #        result = future.result()
+        #    except Exception as e:
+        #       print(f"Error downloading file: {str(e)}")
+        #        continue
+                
+                
+                

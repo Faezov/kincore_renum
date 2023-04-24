@@ -9,13 +9,13 @@ from Bio.PDB import *
 import xml.etree.ElementTree as ET  # xml parser
 import pandas as pd
 import numpy as np
-
-
-from src.download_data import url_formation_for_pool, download_with_pool
 exception_AccessionIDs = ["P42212", "Q17104", "Q27903", "Q93125", "P03069", 
                           "D3DLN9", "Q96UT3", "P0ABE7", "P00192", "P76805", 
                           "Q8XCE3", "P00720", "Q38170", "Q94N07", "P0AEX9", 
                           "P02928", "Q2M6S0"]
+                          
+from src.download_data import url_formation_for_pool, download_with_pool
+
 
 def try_mmCIF2dict(default_input_path_to_mmcif, mmcif_name, max_retries=3):
     mmcif_dict = None
