@@ -26,7 +26,7 @@ if not os.path.exists(default_output_path_to_mmCIF):
 default_num=50000
 gzip_mode="on"
 
-
+print("Print ME!")
 
 with open("active_zerodisorder.txt", "r") as active_zerodisorder:
     active_zerodisorder_rl = active_zerodisorder.readlines()
